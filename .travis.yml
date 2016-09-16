@@ -1,0 +1,6 @@
+install:
+  - sudo apt-get install protobuf-compiler
+  
+script:
+  - protoc -I=. --java_out=. ./robot_communication_packet.proto
+  - protoc -I=. --cpp_out=. ./robot_communication_packet.proto
