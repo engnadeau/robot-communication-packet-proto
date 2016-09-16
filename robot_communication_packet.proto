@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package robot_communication_packet;
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "me.nicholasnadeau.robot.communication.packet";
+option java_outer_classname = "RobotNetworkPacket";
+
+message Packet {
+    int32 id = 1;
+    CommandIDType command_id = 2;
+    SubCommandIDType sub_command_id = 3;
+    google.protobuf.Timestamp timestamp = 4;
+    oneof Data {
+        JointPositions jointPositions = 5;
+        JointTorques jointTorques = 6;
+        CartesianPose cartesianPose = 7;
+        CartesianWrench cartesianWrench = 8;
+        int32 status_code = 9;
+    }
+
+    enum CommandIDType {
+        ACK = 0;
+        NAK = 1;
+        JOINT_POSITION = 2;
+        JOINT_TORQUE = 3;
+        CARTESIAN_POSITION = 4;
+        CARTESIAN_FORCE = 5;
+        STATUS = 6;
+        KEEP_ALIVE = 7;
+        COMPLETE_MEASURE = 8;
+    }
+
+    enum SubCommandIDType {
+        SET = 0;
+        GET = 1;
+        INFO = 2;
+    }
+
+    message JointPositions {
+        int32 number_of_joints = 1;
+        repeated double joint_data = 2;
+    }
+
+    message JointTorques {
+        int32 number_of_joints = 1;
+        repeated double joint_data = 2;
+    }
+
+    message CartesianPose {
+        double x = 1;
+        double y = 2;
+        double z = 3;
+        double rx = 4;
+        double ry = 5;
+        double rz = 6;
+    }
+
+    message CartesianWrench {
+        double x = 1;
+        double y = 2;
+        double z = 3;
+        double rx = 4;
+        double ry = 5;
+        double rz = 6;
+    }
+}
+
