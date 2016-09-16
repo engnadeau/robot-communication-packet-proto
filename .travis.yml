@@ -3,5 +3,5 @@ install:
   - unzip protoc-3.0.2-linux-x86_64.zip
   
 script:
-  - protoc-3.0.2-linux-x86_64/bin/protoc -I=. --java_out=. ./robot_communication_packet.proto
-  - protoc-3.0.2-linux-x86_64/bin/protoc -I=. --cpp_out=. ./robot_communication_packet.proto
+  - bin/protoc -I=. --java_out=. ./robot_communication_packet.proto
+  - bin/protoc -I=. --cpp_out=. ./robot_communication_packet.proto
