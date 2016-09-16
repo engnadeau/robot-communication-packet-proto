@@ -1,6 +1,7 @@
 install:
-  - sudo apt-get install protobuf-compiler
+  - wget https://github.com/google/protobuf/releases/download/v3.0.2/protoc-3.0.2-linux-x86_64.zip
+  - unzip protoc-3.0.2-linux-x86_64.zip
   
 script:
-  - protoc -I=. --java_out=. ./robot_communication_packet.proto
-  - protoc -I=. --cpp_out=. ./robot_communication_packet.proto
+  - protoc-3.0.2-linux-x86_64/bin/protoc -I=. --java_out=. ./robot_communication_packet.proto
+  - protoc-3.0.2-linux-x86_64/bin/protoc -I=. --cpp_out=. ./robot_communication_packet.proto
