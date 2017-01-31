@@ -3,6 +3,19 @@ install:
   - unzip protoc-3.1.0-linux-x86_64.zip
   
 script:
-  - bin/protoc -I=. --java_out=. ./robot_communication_packet.proto
-  - bin/protoc -I=. --cpp_out=. ./robot_communication_packet.proto
-  - ls
+  - PROTO_FILE=robot_comm_packet.proto
+  - bin/protoc -I=. --java_out=. ./${PROTO_FILE}
+  - bin/protoc -I=. --cpp_out=. ./${PROTO_FILE}
+
+before_deploy:
+  - export RELEASE_FILES=$(find . -type f | grep -E '.pb|.java')
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "hmb0JCWwtAdGkXUPSYL5wasHdJJiYZ5DT1eNWri+96oue7l1/49Y6FUhcNSHxSqe/C4AZSMD9miNx/B+cAnEi3hA2b5TGImCx7L6Jhl66ZePGxO5+DYeUvn51RJNm7xL4A/7tqkhF7yUPWIxDoBETBYzBP5DobD08L05pENsKrQ+fFtKfRbOdQW16vgoZOhU+Evx+gIYmJ0ci8spAFucDerDsoGL1xnkMABtenuVyAB9rgnzklTkCLEvQlVTjtgpb2gMvdEryWMcqzV1gex2nSzmzFoJQ++JVnRZk17I1dy6hnI9f/6ttckyUCG6NRPrtc32D94bSXQxykRRLSDDUY+GVlYFTzUXkxqRx5bPbGpo73ej2oskB8U1bQ0MHHXPLLb2wddCU0KIm1Tlbz4kaqEkQ8ZZHoFcE9PCOl2q0+/8+gT0ipJbaCK2UazsXTlB0BPlgvUlJdWzms4CLWB7Fzg4NYpZcZGCHiqSEVG6Yo4+TxC71sDRXUQNHoazaB6s+JeS7ny2WJPgBBRR3hqBGoOyPg8gQAVhv2iKqk99eSsRM52oPfCAhZIVCiKkxuW3o0uS9ZxOctM+QvsJr+w+e5xTCgjOHsCtM4uttkOPRpm9juqUGv08bbHPETwaUF7n00NwPO8+l/HvWHYKVuQP61AF/LiAeKXFJCkGRrGcJrQ="
+  file_glob: true
+  file: "${RELEASE_FILES}"
+  skip_cleanup: true
+  on:
+    tags: true
