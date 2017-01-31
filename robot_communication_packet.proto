@@ -7,7 +7,7 @@ import "google/protobuf/timestamp.proto";
 
 // java settings
 option java_package = "me.nicholasnadeau.robot.comm";
-option java_outer_classname = "RobotNetworkPacket";
+option java_outer_classname = "Packet";
 
 message Packet {
     int32 id = 1;
@@ -24,7 +24,7 @@ message Packet {
     repeated double cartesian_pose = 7;
     repeated double cartesian_wrench = 8;
 
-    enum CommandIDType {
+    enum CommandID {
         ACK = 0;
         NAK = 1;
         JOINT_POSITION = 2;
@@ -36,7 +36,7 @@ message Packet {
         ALL = 8;
     }
 
-    enum SubCommandIDType {
+    enum SubCommandID {
         SET = 0;
         GET = 1;
         INFO = 2;
