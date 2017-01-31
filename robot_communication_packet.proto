@@ -7,7 +7,7 @@ import "google/protobuf/timestamp.proto";
 
 // java settings
 option java_package = "me.nicholasnadeau.robot.comm";
-option java_outer_classname = "Packet";
+option java_outer_classname = "PacketProtos";
 
 message Packet {
     int32 id = 1;
