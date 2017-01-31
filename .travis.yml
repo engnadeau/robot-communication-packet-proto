@@ -6,9 +6,7 @@ script:
   - PROTO_FILE=robot_comm_packet.proto
   - bin/protoc -I=. --java_out=. ./${PROTO_FILE}
   - bin/protoc -I=. --cpp_out=. ./${PROTO_FILE}
-
-before_deploy:
-  - export RELEASE_FILES=$(find . -type f | grep -E '.pb|.java')
+  - find . -type f
 
 deploy:
   provider: releases
