@@ -5,3 +5,4 @@ install:
 script:
   - bin/protoc -I=. --java_out=. ./robot_communication_packet.proto
   - bin/protoc -I=. --cpp_out=. ./robot_communication_packet.proto
+  - ls
