@@ -1,12 +1,19 @@
 install:
+  # get protoc
   - wget https://github.com/google/protobuf/releases/download/v3.1.0/protoc-3.1.0-linux-x86_64.zip
   - unzip protoc-3.1.0-linux-x86_64.zip
   
 script:
-  - mkdir -p ./src/main/java
+  # generate protobuf classes
   - PROTO_FILE=robot_comm_packet.proto
   - bin/protoc -I=. --java_out=./src/main/java ./${PROTO_FILE}
   - bin/protoc -I=. --cpp_out=. ./${PROTO_FILE}
+
+  # build java
+  - gradle clean
+  - gradle build
+
+  # debug
   - find . -type f
 
 deploy:
