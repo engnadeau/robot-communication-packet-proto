@@ -4,7 +4,12 @@ plugins {
 }
 
 group 'me.nicholasnadeau'
-version '0.1.1'
+
+if (project.hasProperty('tag')) {
+    version = project.tag
+} else {
+    version = '0'
+}
 
 sourceCompatibility = 1.6
 
