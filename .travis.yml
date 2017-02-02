@@ -14,7 +14,7 @@ script:
 
   # build java
   - gradle clean
-  - gradle build
+  - gradle -Ptag=$TRAVIS_TAG build
 
   # debug
   - find . -type f
