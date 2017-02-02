@@ -1,8 +1,20 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
 group 'me.nicholasnadeau'
 version '0.1.1'
 
-apply plugin: 'java'
-apply plugin: 'idea'
-
 sourceCompatibility = 1.6
 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.0.2'
+}
