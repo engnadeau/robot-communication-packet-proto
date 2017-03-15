@@ -14,7 +14,7 @@ script:
 
   # build java
   - gradle clean
-  - gradle -Ptag=$TRAVIS_TAG build
+  - gradle -Ptag=$TRAVIS_TAG shadowJar
 
   # zip cpp class
   - export CPP_ZIP_NAME=robot-communication-packet-proto-cpp-$TRAVIS_TAG.zip
