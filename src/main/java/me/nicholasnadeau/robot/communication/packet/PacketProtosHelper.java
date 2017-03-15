@@ -1,4 +1,4 @@
-package me.nicholasnadeau.robot.comm;
+package me.nicholasnadeau.robot.communication.packet;
 
 import com.google.protobuf.Timestamp;
 
