@@ -1,7 +1,18 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        // https://github.com/google/protobuf-gradle-plugin
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.1'
+    }
+}
+
 plugins {
     id 'java'
     id 'idea'
     id 'com.github.johnrengelman.shadow' version '1.2.3'
+    id "com.google.protobuf" version "0.8.1"
 }
 
 group 'me.nicholasnadeau'
@@ -14,6 +25,23 @@ if (project.hasProperty('tag')) {
 
 sourceCompatibility = 1.6
 
+protobuf {
+    protoc {
+        // https://mvnrepository.com/artifact/com.google.protobuf/protoc
+        artifact = 'com.google.protobuf:protoc:3.2.0'
+    }
+
+    generateProtoTasks {
+        // all() returns the collection of all protoc tasks
+        all().each { task ->
+            task.builtins {
+                java {}
+                cpp {}
+            }
+        }
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -22,7 +50,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
     // https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
-    compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.0.2'
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.2.0'
 }
 
 shadowJar.archiveName = "$project.name-$project.version-all.jar"
