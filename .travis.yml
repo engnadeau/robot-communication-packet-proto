@@ -5,14 +5,14 @@ install:
   - chmod +x gradlew
 
 script:
-  - gradle clean
+  - ./gradlew clean
 
   # build protobuf using gradle
-  - gradle generateProto
+  - ./gradlew generateProto
 
   # build jars
-  - gradle -Ptag=$TRAVIS_TAG build
-  - gradle -Ptag=$TRAVIS_TAG shadowJar
+  - ./gradlew -Ptag=$TRAVIS_TAG build
+  - ./gradlew -Ptag=$TRAVIS_TAG shadowJar
 
   # zip cpp class
   - export CPP_ZIP_NAME=robot-communication-packet-proto-cpp-$TRAVIS_TAG.zip
