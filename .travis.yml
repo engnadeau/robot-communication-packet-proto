@@ -2,23 +2,23 @@ language: java
 jdk: openjdk7
 
 install:
-- wget https://github.com/google/protobuf/releases/download/v3.1.0/protoc-3.1.0-linux-x86_64.zip
-- unzip protoc-3.1.0-linux-x86_64.zip
+  - chmod +x gradlew
 
 script:
-  # generate protobuf classes
-  - PROTO_FILE=robot_comm_packet.proto
-  - bin/protoc -I=. --java_out=./src/main/java ./${PROTO_FILE}
-  - bin/protoc -I=. --cpp_out=. ./${PROTO_FILE}
-
-  # build java
   - gradle clean
+
+  # build protobuf using gradle
+  - gradle generateProto
+
+  # build jars
+  - gradle -Ptag=$TRAVIS_TAG build
   - gradle -Ptag=$TRAVIS_TAG shadowJar
 
   # zip cpp class
   - export CPP_ZIP_NAME=robot-communication-packet-proto-cpp-$TRAVIS_TAG.zip
   - echo $CPP_ZIP_NAME
-  - zip $CPP_ZIP_NAME robot_comm_packet.pb.*
+  - export CPP_PATH=build/generated/source/proto/main/cpp
+  - zip $CPP_ZIP_NAME $CPP_PATH/robot_comm_packet.pb.*
 
   # debug
   - find . -type f
