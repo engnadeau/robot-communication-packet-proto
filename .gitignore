@@ -2,3 +2,4 @@
 *.h
 .gradle/
 build/
+/gen/
