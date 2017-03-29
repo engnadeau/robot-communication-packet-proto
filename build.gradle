@@ -40,6 +40,20 @@ protobuf {
             }
         }
     }
+
+    // https://github.com/google/protobuf-gradle-plugin#intellij-idea
+    generatedFilesBaseDir = "$projectDir/gen"
+}
+
+// https://github.com/google/protobuf-gradle-plugin#intellij-idea
+clean {
+    delete protobuf.generatedFilesBaseDir
+}
+
+idea {
+    module {
+        sourceDirs += file("${protobuf.generatedFilesBaseDir}/main/java");
+    }
 }
 
 repositories {
