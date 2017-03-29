@@ -68,3 +68,7 @@ dependencies {
 }
 
 shadowJar.archiveName = "$project.name-$project.version-all.jar"
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.14.1'
+}
