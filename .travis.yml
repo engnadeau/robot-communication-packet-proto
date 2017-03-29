@@ -1,5 +1,11 @@
 language: java
-jdk: openjdk7
+matrix:
+  fast_finish: true
+  include:
+    - jdk: oraclejdk7
+    - jdk: oraclejdk8
+    - jdk: openjdk6
+    - jdk: openjdk7
 
 install:
   - chmod +x gradlew
@@ -33,6 +39,7 @@ deploy:
     - ./$CPP_ZIP_NAME
   skip_cleanup: true
   on:
+    jdk: openjdk6
     tags: true
     repo: nnadeau/robot-communication-packet-proto
 notifications:
