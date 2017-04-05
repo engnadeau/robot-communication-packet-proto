@@ -23,7 +23,7 @@ script:
   # zip cpp class
   - export CPP_ZIP_NAME=robot-communication-packet-proto-cpp-$TRAVIS_TAG.zip
   - echo $CPP_ZIP_NAME
-  - export CPP_PATH=build/generated/source/proto/main/cpp
+  - export CPP_PATH=./gen/main/cpp/
   - zip $CPP_ZIP_NAME $CPP_PATH/robot_comm_packet.pb.*
 
   # debug
