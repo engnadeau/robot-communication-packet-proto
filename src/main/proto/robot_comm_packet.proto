@@ -1,45 +1,15 @@
-// protobuf settings
 syntax = "proto3";
-package nnadeau.robot.comm;
+package nnadeau.robot;
 
-// imports
 import "google/protobuf/timestamp.proto";
 
-// java settings
-option java_package = "me.nicholasnadeau.robot.communication.packet";
-option java_outer_classname = "PacketProtos";
+option java_package = "me.nicholasnadeau.robot";
+option java_outer_classname = "RobotPacketProtos";
 
-message Packet {
+message RobotPacket {
     int32 id = 1;
-    google.protobuf.Timestamp timestamp = 4;
-    int32 status_code = 9;
-
-    CommandID command_id = 2;
-    SubCommandID sub_command_id = 3;
-
-    repeated double joint_position = 5;
-    repeated double int_joint_torques = 6;
-    repeated double ext_joint_torques = 10;
-
-    repeated double cartesian_pose = 7;
-    repeated double cartesian_wrench = 8;
-
-    enum CommandID {
-        ACK = 0;
-        NAK = 1;
-        JOINT_POSITION = 2;
-        JOINT_TORQUE = 3;
-        CARTESIAN_POSITION = 4;
-        CARTESIAN_FORCE = 5;
-        STATUS = 6;
-        KEEP_ALIVE = 7;
-        ALL = 8;
-    }
-
-    enum SubCommandID {
-        SET = 0;
-        GET = 1;
-        INFO = 2;
-    }
+    google.protobuf.Timestamp timestamp = 2;
+    int32 code = 3;
+    repeated double data = 4;
 }
 
