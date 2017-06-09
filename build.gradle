@@ -11,7 +11,7 @@ buildscript {
 plugins {
     id 'java'
     id 'idea'
-    id 'com.github.johnrengelman.shadow' version '1.2.3'
+    id "com.github.johnrengelman.shadow" version "2.0.0"
     id "com.google.protobuf" version "0.8.1"
 }
 
@@ -28,7 +28,7 @@ sourceCompatibility = 1.6
 protobuf {
     protoc {
         // https://mvnrepository.com/artifact/com.google.protobuf/protoc
-        artifact = 'com.google.protobuf:protoc:3.2.0'
+        artifact = 'com.google.protobuf:protoc:3.0.0'
     }
 
     generateProtoTasks {
@@ -61,19 +61,11 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/junit/junit
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
     // https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
-    compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.2.0'
-
-    // list -> string
-    // https://mvnrepository.com/artifact/com.google.guava/guava
-    compile group: 'com.google.guava', name: 'guava', version: '20.0'
-
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.3.1'
 }
 
 shadowJar.archiveName = "$project.name-$project.version-all.jar"
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.14.1'
-}

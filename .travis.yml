@@ -4,7 +4,6 @@ matrix:
   include:
     - jdk: oraclejdk7
     - jdk: oraclejdk8
-    - jdk: openjdk6
     - jdk: openjdk7
 
 install:
@@ -24,7 +23,7 @@ script:
   - export CPP_ZIP_NAME=robot-communication-packet-proto-cpp-$TRAVIS_TAG.zip
   - echo $CPP_ZIP_NAME
   - export CPP_PATH=./gen/main/cpp/
-  - zip $CPP_ZIP_NAME $CPP_PATH/robot_comm_packet.pb.*
+  - zip $CPP_ZIP_NAME $CPP_PATH/robot_packet.pb.*
 
   # debug
   - find . -type f
@@ -39,8 +38,9 @@ deploy:
     - ./$CPP_ZIP_NAME
   skip_cleanup: true
   on:
-    jdk: openjdk6
+    jdk: oraclejdk8
     tags: true
     repo: nnadeau/robot-communication-packet-proto
+
 notifications:
   email: false
