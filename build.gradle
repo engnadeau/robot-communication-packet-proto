@@ -23,7 +23,9 @@ if (project.hasProperty('tag')) {
     version = '0'
 }
 
+// set java 1.6 compatibility
 sourceCompatibility = 1.6
+targetCompatibility = 1.6
 
 protobuf {
     protoc {
