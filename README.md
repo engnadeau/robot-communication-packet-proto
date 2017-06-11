@@ -3,7 +3,7 @@
 [![Release](https://jitpack.io/v/nnadeau/robot-communication-packet-proto.svg)](https://jitpack.io/#nnadeau/robot-communication-packet-proto)
 
 # Protobuf Robot Communication Packet
-Robot communication [packet implementation using protobuf](./src/main/proto/robot_comm_packet.proto)
+Robot communication [packet implementation using protobuf](./src/main/proto/robot_packet.proto)
 
 ## Overview
 - Uses the [Protobuf Gradle Plugin](https://github.com/google/protobuf-gradle-plugin)
