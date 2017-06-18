@@ -41,8 +41,10 @@ message RobotPacket {
     enum Command {
         ACK = 0;
         NAK = 1;
-        PING = 3;
-        DATA = 4;
+        PING = 2;
+        DATA = 3;
+        MOVE_ABS = 4;
+        MOVE_REL = 5;
     }
 }
 
